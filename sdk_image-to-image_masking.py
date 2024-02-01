@@ -49,8 +49,8 @@ stability_api = client.StabilityInference(
 )
 
 # open the original image and the blurred mask image
-img = Image.open('./original.png')
-mask_i = Image.open('./blurred_mask.png')
+img = Image.open('./image.png')
+mask_i = Image.open('./mask.png')
 
 blur = GaussianBlur(11,20)
 mask = blur(mask_i)

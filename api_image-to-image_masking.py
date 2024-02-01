@@ -2,19 +2,6 @@ import base64
 import os
 import requests
 
-"""
-Generate masked images using the Stability AI API.
-How to directly hit the API without using the SDK.
-
-This function sends a POST request to the Stability AI API to generate masked images based on the provided inputs.
-It requires the following environment variables to be set:
-- API_HOST: The API host URL.
-- STABILITY_API_KEY: The Stability API key.
-
-Returns:
-None
-"""
-
 # set the Stability key
 STABILITY_KEY = 'sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
@@ -34,6 +21,18 @@ style_preset = "photographic"
 seed = 44332211
 
 # Function to generate masked images
+"""
+Generate masked images using the Stability AI API.
+How to directly hit the API without using the SDK.
+
+This function sends a POST request to the Stability AI API to generate masked images based on the provided inputs.
+It requires the following environment variables to be set:
+- API_HOST: The API host URL.
+- STABILITY_API_KEY: The Stability API key.
+
+Returns:
+None
+"""
 def generate_masked_images():
     engine_id = "stable-diffusion-xl-1024-v1-0"
     api_host = os.getenv('API_HOST', 'https://api.stability.ai')
@@ -49,8 +48,8 @@ def generate_masked_images():
             "Authorization": f"Bearer {api_key}"
         },
         files={
-            'init_image': open("./original.png", 'rb'),
-            'mask_image': open("./blurred_mask.png", 'rb'),
+            'init_image': open("./image.png", 'rb'),
+            'mask_image': open("./mask.png", 'rb'),
         },
         data={
             "text_prompts[0][text]": prompt,
